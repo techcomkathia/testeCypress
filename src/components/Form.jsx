@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 function Form({ onSubmit }) {
   const [formData, setFormData] = useState({ nome: '', email: '', senha: '' });
 
+  // Atualiza o estado do formulário ao digitar
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -13,13 +14,14 @@ function Form({ onSubmit }) {
     }));
   };
 
+  // Trata submissão do formulário e chama o callback recebido
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-cy="form-principal">
       <div>
         <label htmlFor="nome">Nome:</label>
         <input
@@ -29,6 +31,7 @@ function Form({ onSubmit }) {
           value={formData.nome}
           onChange={handleChange}
           required
+          data-cy="input-nome"
         />
       </div>
       <div>
@@ -40,6 +43,7 @@ function Form({ onSubmit }) {
           value={formData.email}
           onChange={handleChange}
           required
+          data-cy="input-email"
         />
       </div>
       <div>
@@ -51,9 +55,10 @@ function Form({ onSubmit }) {
           value={formData.senha}
           onChange={handleChange}
           required
+          data-cy="input-senha"
         />
       </div>
-      <button type="submit">Enviar</button>
+      <button type="submit" data-cy="button-submit-form">Enviar</button>
     </form>
   );
 }

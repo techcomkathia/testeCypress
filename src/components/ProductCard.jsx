@@ -9,6 +9,7 @@ function ProductCard() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
 
+  // Abre modal de sucesso e depois navega para o carrinho
   const handleAddToCart = () => {
     setIsModalVisible(true);
     setTimeout(() => {
@@ -21,12 +22,12 @@ function ProductCard() {
   };
 
   return (
-    <div className="product-card">
-      <img src={productImage} alt="Produto" className="product-image" />
-      <h2>Produto</h2>
-      <p className="price">R$ 299,99</p>
-      <p className="discount-price">R$ 209,99 à vista</p>
-      <button onClick={handleAddToCart}>Adicionar ao Carrinho</button>
+    <div className="product-card" data-cy="product-card">
+      <img src={productImage} alt="Produto" className="product-image" data-cy="product-image" />
+      <h2 data-cy="product-title">Produto</h2>
+      <p className="price" data-cy="product-price">R$ 299,99</p>
+      <p className="discount-price" data-cy="product-discount">R$ 209,99 à vista</p>
+      <button onClick={handleAddToCart} data-cy="button-add-cart">Adicionar ao Carrinho</button>
       <SuccessModal show={isModalVisible} handleClose={closeModal} />
     </div>
   );
