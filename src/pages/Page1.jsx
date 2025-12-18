@@ -9,7 +9,7 @@ function Page1() {
     <div>
       <h1>Página 1</h1>
       <p>Contagem: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Adicionar Contagem</button>
+      <button onClick={() => setCount(count + 1)} data-cy="button-add-count">Adicionar Contagem</button>
     </div>
   );
 }

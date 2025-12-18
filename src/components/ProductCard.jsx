@@ -4,17 +4,30 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SuccessModal from './SuccessModal';
 import productImage from '../assets/produto.png'; 
+import { useCart } from '../contexts/CartContext';
 
 function ProductCard() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const navigate = useNavigate();
 
-  // Abre modal de sucesso e depois navega para o carrinho
+  // Abre modal de sucesso, adiciona produto ao contexto e depois navega para o carrinho
+  const { adicionarAoCarrinho } = useCart();
+
   const handleAddToCart = () => {
+    // Cria objeto produto consistente para o contexto
+    const produto = {
+      id: 'produto-1',
+      name: 'Produto',
+      price: 299.99,
+      image: productImage,
+      quantity: 1,
+    };
+
+    adicionarAoCarrinho(produto);
     setIsModalVisible(true);
     setTimeout(() => {
       navigate('/cart');
-    }, 2000); // Tempo para exibir o modal antes da navegação
+    }, 1000); // tempo menor antes da navegação
   };
 
   const closeModal = () => {
